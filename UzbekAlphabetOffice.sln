@@ -1,0 +1,30 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordUzbekAlphabetAddIn", "WordUzbekAlphabetAddIn\WordUzbekAlphabetAddIn.csproj", "{91E6D92F-3222-42E2-8791-E7F28CF15DAE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelUzbekAlphabetAddIn", "ExcelUzbekAlphabetAddIn\ExcelUzbekAlphabetAddIn.csproj", "{5D4BFA12-8A6B-4D39-A3E9-74A5BF01E612}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerPointUzbekAlphabetAddIn", "PowerPointUzbekAlphabetAddIn\PowerPointUzbekAlphabetAddIn.csproj", "{A4319C4A-6F29-44D7-A0DA-310DE0AE522B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{91E6D92F-3222-42E2-8791-E7F28CF15DAE}.Debug|Any CPU.ActiveCfg = Debug|AnyCPU
+		{91E6D92F-3222-42E2-8791-E7F28CF15DAE}.Debug|Any CPU.Build.0 = Debug|AnyCPU
+		{91E6D92F-3222-42E2-8791-E7F28CF15DAE}.Release|Any CPU.ActiveCfg = Release|AnyCPU
+		{91E6D92F-3222-42E2-8791-E7F28CF15DAE}.Release|Any CPU.Build.0 = Release|AnyCPU
+		{5D4BFA12-8A6B-4D39-A3E9-74A5BF01E612}.Debug|Any CPU.ActiveCfg = Debug|AnyCPU
+		{5D4BFA12-8A6B-4D39-A3E9-74A5BF01E612}.Debug|Any CPU.Build.0 = Debug|AnyCPU
+		{5D4BFA12-8A6B-4D39-A3E9-74A5BF01E612}.Release|Any CPU.ActiveCfg = Release|AnyCPU
+		{5D4BFA12-8A6B-4D39-A3E9-74A5BF01E612}.Release|Any CPU.Build.0 = Release|AnyCPU
+		{A4319C4A-6F29-44D7-A0DA-310DE0AE522B}.Debug|Any CPU.ActiveCfg = Debug|AnyCPU
+		{A4319C4A-6F29-44D7-A0DA-310DE0AE522B}.Debug|Any CPU.Build.0 = Debug|AnyCPU
+		{A4319C4A-6F29-44D7-A0DA-310DE0AE522B}.Release|Any CPU.ActiveCfg = Release|AnyCPU
+		{A4319C4A-6F29-44D7-A0DA-310DE0AE522B}.Release|Any CPU.Build.0 = Release|AnyCPU
+	EndGlobalSection
+EndGlobal

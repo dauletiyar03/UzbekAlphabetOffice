@@ -1,0 +1,22 @@
+# Visual Studio
+.vs/
+**/bin/
+**/obj/
+*.suo
+*.user
+*.csproj.user
+
+# Local signing keys and certificates (never publish private keys)
+**/*_TemporaryKey.pfx
+*.pfx
+*.p12
+
+# Generated packages
+artifacts/
+release/
+*.zip
+
+# OS files
+__MACOSX/
+.DS_Store
+Thumbs.db

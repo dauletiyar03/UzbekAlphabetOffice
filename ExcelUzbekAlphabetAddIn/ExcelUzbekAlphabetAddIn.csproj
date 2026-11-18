@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5D4BFA12-8A6B-4D39-A3E9-74A5BF01E612}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>ExcelUzbekAlphabetAddIn</RootNamespace>
+    <AssemblyName>ExcelUzbekAlphabetAddIn</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <ProjectTypeGuids>{BAA0C2D2-18E2-41B9-852F-F413020CAA33};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OfficeApplication>Excel</OfficeApplication>
+    <NoStandardLibraries>false</NoStandardLibraries>
+    <DefineConstants>VSTO40;UseOfficeInterop</DefineConstants>
+    <SignManifests Condition="'$(ManifestCertificateThumbprint)' != '' or Exists('ExcelUzbekAlphabetAddIn_TemporaryKey.pfx')">true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile Condition="'$(ManifestCertificateThumbprint)' == '' and Exists('ExcelUzbekAlphabetAddIn_TemporaryKey.pfx')">ExcelUzbekAlphabetAddIn_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.Office.Interop.Excel" />
+    <Reference Include="Office" />
+    <Reference Include="Microsoft.Office.Tools.Common" />
+    <Reference Include="Microsoft.Office.Tools.Excel" />
+    <Reference Include="Microsoft.Office.Tools.v4.0.Framework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL"><Private>False</Private></Reference>
+    <Reference Include="Microsoft.VisualStudio.Tools.Applications.Runtime, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL"><Private>False</Private></Reference>
+    <Reference Include="Microsoft.Office.Tools, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL"><Private>False</Private></Reference>
+    <Reference Include="Microsoft.Office.Tools.Common.v4.0.Utilities, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL"><Private>True</Private></Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Globals.cs" />
+    <Compile Include="ThisAddIn.Designer.cs" />
+    <Compile Include="ThisAddIn.cs" />
+    <Compile Include="UzbekAlphabetConverter.cs" />
+    <Compile Include="UzbekAlphabetRibbon.cs" />
+    <None Include="ThisAddIn.Designer.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup><VSToolsPath Condition="'$(VSToolsPath)' == '' and Exists('$(MSBuildToolsPath)\..\..\..\Microsoft\VisualStudio\v$(VisualStudioVersion)\OfficeTools\Microsoft.VisualStudio.Tools.Office.targets')">$(MSBuildToolsPath)\..\..\..\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath></PropertyGroup>
+  <PropertyGroup><VSToolsPath Condition="'$(VSToolsPath)' == '' and Exists('$(MSBuildToolsPath)\..\..\Microsoft\VisualStudio\v$(VisualStudioVersion)\OfficeTools\Microsoft.VisualStudio.Tools.Office.targets')">$(MSBuildToolsPath)\..\..\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath></PropertyGroup>
+  <Import Project="$(VSToolsPath)\OfficeTools\Microsoft.VisualStudio.Tools.Office.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{BAA0C2D2-18E2-41B9-852F-F413020CAA33}">
+        <ProjectProperties HostName="Excel" HostPackage="{29A7B9D7-A7F1-4328-8EF0-6B2D1A56B2C1}" ProjectCreationSetting="1" OfficeVersion="15.0" VstxVersion="4.0" ApplicationType="Excel" Language="cs" TemplatesPath="" AddItemTemplatesGuid="{51063C3A-E220-4D12-8922-BDA915ACD783}" DebugInfoExeName="#Software\Microsoft\Office\16.0\Excel\InstallRoot\Path#EXCEL.EXE" DebugInfoCommandLine="/x" DebugInfoWorkingDir="" IconImageList="" />
+        <Host Name="Excel" GeneratedCodeNamespace="ExcelUzbekAlphabetAddIn">
+          <HostItem Name="ThisAddIn" Code="ThisAddIn.cs" CanonicalName="AddIn" CanActivate="false" IconIndex="1" Blueprint="ThisAddIn.Designer.xml" GeneratedCode="ThisAddIn.Designer.cs" />
+        </Host>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
