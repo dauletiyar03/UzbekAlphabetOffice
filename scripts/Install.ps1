@@ -5,18 +5,18 @@ $certPath = Join-Path $PSScriptRoot 'YangiAlifboPublisher.cer'
 
 if (-not (Test-Path $certPath)) { throw 'Не найден файл сертификата YangiAlifboPublisher.cer.' }
 
-$hosts = @(
+$officeApps = @(
     @{ Name = 'Word'; Assembly = 'WordUzbekAlphabetAddIn' },
     @{ Name = 'Excel'; Assembly = 'ExcelUzbekAlphabetAddIn' },
     @{ Name = 'PowerPoint'; Assembly = 'PowerPointUzbekAlphabetAddIn' }
 )
 $installed = @()
-foreach ($host in $hosts) {
+foreach ($officeApp in $officeApps) {
     $regPaths = @(
-        "HKLM:\SOFTWARE\Microsoft\Office\16.0\$($host.Name)\InstallRoot",
-        "HKLM:\SOFTWARE\WOW6432Node\Microsoft\Office\16.0\$($host.Name)\InstallRoot"
+        "HKLM:\SOFTWARE\Microsoft\Office\16.0\$($officeApp.Name)\InstallRoot",
+        "HKLM:\SOFTWARE\WOW6432Node\Microsoft\Office\16.0\$($officeApp.Name)\InstallRoot"
     )
-    if ($regPaths | Where-Object { Test-Path $_ }) { $installed += $host }
+    if ($regPaths | Where-Object { Test-Path $_ }) { $installed += $officeApp }
 }
 if ($installed.Count -eq 0) { throw 'Не найден установленный настольный Office 2016 или новее (Word, Excel, PowerPoint).' }
 
@@ -31,20 +31,20 @@ foreach ($storeName in @('Root','TrustedPublisher')) {
 
 if (Test-Path $root) { Remove-Item -LiteralPath $root -Recurse -Force }
 New-Item -ItemType Directory -Path $root -Force | Out-Null
-foreach ($host in $installed) {
-    $source = Join-Path $PSScriptRoot $host.Name
-    if (-not (Test-Path (Join-Path $source ($host.Assembly + '.vsto')))) {
-        throw "В архиве отсутствуют файлы надстройки $($host.Name)."
+foreach ($officeApp in $installed) {
+    $source = Join-Path $PSScriptRoot $officeApp.Name
+    if (-not (Test-Path (Join-Path $source ($officeApp.Assembly + '.vsto')))) {
+        throw "В архиве отсутствуют файлы надстройки $($officeApp.Name)."
     }
-    $target = Join-Path $root $host.Name
+    $target = Join-Path $root $officeApp.Name
     Copy-Item -Path $source -Destination $target -Recurse
-    $manifest = 'file:///' + ((Join-Path $target ($host.Assembly + '.vsto')).Replace('\','/')) + '|vstolocal'
-    $key = "HKCU:\Software\Microsoft\Office\$($host.Name)\Addins\$($host.Assembly)"
+    $manifest = 'file:///' + ((Join-Path $target ($officeApp.Assembly + '.vsto')).Replace('\','/')) + '|vstolocal'
+    $key = "HKCU:\Software\Microsoft\Office\$($officeApp.Name)\Addins\$($officeApp.Assembly)"
     New-Item -Path $key -Force | Out-Null
-    New-ItemProperty -Path $key -Name FriendlyName -Value 'O‘zbek alifbosi' -PropertyType String -Force | Out-Null
+    New-ItemProperty -Path $key -Name FriendlyName -Value "O'zbek alifbosi" -PropertyType String -Force | Out-Null
     New-ItemProperty -Path $key -Name Description -Value 'Преобразование текста в узбекский латинский алфавит' -PropertyType String -Force | Out-Null
     New-ItemProperty -Path $key -Name LoadBehavior -Value 3 -PropertyType DWord -Force | Out-Null
     New-ItemProperty -Path $key -Name Manifest -Value $manifest -PropertyType String -Force | Out-Null
-    Write-Host "Установлено для $($host.Name)"
+    Write-Host "Установлено для $($officeApp.Name)"
 }
-Write-Host 'Готово. Закройте и снова откройте приложения Office.' -ForegroundColor Green
+Write-Host "Установка завершена. Закройте и снова откройте Office." -ForegroundColor Green

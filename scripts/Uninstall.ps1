@@ -1,13 +1,13 @@
 ﻿$ErrorActionPreference = 'Stop'
 $appName = 'YangiAlifboOffice'
 $root = Join-Path $env:LOCALAPPDATA $appName
-$hosts = @(
+$officeApps = @(
     @{ Name = 'Word'; Assembly = 'WordUzbekAlphabetAddIn' },
     @{ Name = 'Excel'; Assembly = 'ExcelUzbekAlphabetAddIn' },
     @{ Name = 'PowerPoint'; Assembly = 'PowerPointUzbekAlphabetAddIn' }
 )
-foreach ($host in $hosts) {
-    $key = "HKCU:\Software\Microsoft\Office\$($host.Name)\Addins\$($host.Assembly)"
+foreach ($officeApp in $officeApps) {
+    $key = "HKCU:\Software\Microsoft\Office\$($officeApp.Name)\Addins\$($officeApp.Assembly)"
     if (Test-Path $key) { Remove-Item -LiteralPath $key -Recurse -Force }
 }
 if (Test-Path $root) { Remove-Item -LiteralPath $root -Recurse -Force }

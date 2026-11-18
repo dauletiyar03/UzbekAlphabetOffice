@@ -6,6 +6,14 @@ if (-not (Test-Path $vswhere)) { throw 'Не найден Visual Studio Installe
 $msbuild = & $vswhere -latest -products '*' -requires Microsoft.Component.MSBuild -find 'MSBuild\**\Bin\MSBuild.exe' | Select-Object -First 1
 if (-not $msbuild) { throw 'Не найден MSBuild. Установите Visual Studio с нагрузкой «Разработка Microsoft 365».' }
 
+foreach ($scriptName in @('Install.ps1','Uninstall.ps1')) {
+    $scriptPath = Join-Path $PSScriptRoot $scriptName
+    $tokens = $null
+    $parseErrors = $null
+    [void][System.Management.Automation.Language.Parser]::ParseFile($scriptPath,[ref]$tokens,[ref]$parseErrors)
+    if ($parseErrors.Count -gt 0) { throw "Синтаксическая ошибка в $scriptName`: $($parseErrors[0].Message)" }
+}
+
 # Use a neutral local signing identity. Its private key stays in the Windows certificate store.
 $cert = Get-ChildItem Cert:\CurrentUser\My | Where-Object { $_.Subject -eq 'CN=Yangi Alifbo' -and $_.HasPrivateKey } | Select-Object -First 1
 if (-not $cert) {
