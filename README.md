@@ -4,7 +4,7 @@
 
 ## Установка готовой версии
 
-1. Откройте **Releases** на странице GitHub и скачайте `YangiAlifboOffice-Setup.zip`.
+1. Откройте [страницу Releases](https://github.com/dauletiyar03/UzbekAlphabetOffice/releases) и скачайте [YangiAlifboOffice-Setup.zip](https://github.com/dauletiyar03/UzbekAlphabetOffice/raw/refs/heads/master/installers/YangiAlifboOffice-Setup.zip).
 2. Распакуйте архив в любую папку.
 3. Закройте Word, Excel и PowerPoint.
 4. Запустите `Install.cmd`. В окне Windows подтвердите доверие издателю **Yangi Alifbo**, если согласны установить надстройку.
